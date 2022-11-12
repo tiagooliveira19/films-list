@@ -157,30 +157,7 @@ code {
     font-weight: bold;
 }
 
-/*.div-table, .div-form {
-    margin-top: 50px;
-}
-
-.cadastro, .bloco-endereco {
-    display: none;
-}*/
-
-/*.trader-logado span {
-    margin: 45px;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.trader-ordens span {
-    margin: 45px;
+.div-filmes p {
+    margin-left: 50px;
     font-size: 15px;
 }
-
-.div-ativos {
-    display: flex;
-    margin-top: 80px !important;
-}
-
-.itens-ativos {
-    font-size: 13px;
-}*/

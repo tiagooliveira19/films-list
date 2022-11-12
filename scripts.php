@@ -9,17 +9,7 @@
 <script>
 
     $(document).ready(function () {
-
-        /*
-            toastr.success('Sucesso!', '', {
-                closeButton: true,
-                progressBar: true,
-                positionClass: "toast-top-right",
-                preventDuplicates: true,
-                showDuration: "300",
-                showMethod: "fadeIn",
-                hideMethod: "fadeOut"
-            });
-         */
+        buscaFilmes();
+        paginaFilme();
     });
 </script>

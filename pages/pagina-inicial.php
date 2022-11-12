@@ -25,10 +25,17 @@
 
             <ul>
                 <li class="ml-50">
-                    A base de dados utilizada nessa aplicação encontra-se na pasta <code>util/database/projeto.sql</code>
+                    A base de dados utilizada na aplicação deve ser criada antes de iniciar a mesma, a(s) tabela(s) e seus respectivos atributos serão criados automaticamente durante
+                    a primeira execução do servidor node através do comando <code>node server.js</code> no terminal
                 </li>
                 <li class="ml-50">
-                    A ferramenta <code>xampp</code> foi utilizada como servidor para a base de dados
+                    Por precaução a base de dados utilizada nessa aplicação encontra-se na pasta <code>util/database/projeto.sql</code>
+                </li>
+                <li class="ml-50">
+                    Por serem mais dinâmicos, arquivos <code>.php</code> foram utilizados na estruturação <code>html</code> da aplicação
+                </li>
+                <li class="ml-50">
+                    A ferramenta <code>XAMPP</code> foi utilizada como servidor da aplicação
                 </li>
             </ul>
         </div>

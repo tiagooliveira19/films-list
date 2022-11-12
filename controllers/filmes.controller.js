@@ -1,7 +1,5 @@
-// const Filmes = require('../models/filmes');
 const db = require('../models');
 const Filmes = db.filmes;
-// const Op = db.Sequelize.Op;
 
 const getPagination = (page, size) => {
     const limit = size ? +size : 10;
@@ -17,7 +15,6 @@ const getPagingData = (data, page, limit) => {
 
     return { totalItems, filmes, totalPages, currentPage };
 };
-
 
 // Cria e Salva um novo filme
 exports.create = (req, res) => {
@@ -37,8 +34,6 @@ exports.create = (req, res) => {
         pontuacao: req.body.pontuacao
     });
 
-    // console.log(filme.dataValues);
-
     // Salva filme criado no banco
     Filmes.create(filme.dataValues, (err, data) => {
         if (err)
@@ -49,21 +44,6 @@ exports.create = (req, res) => {
         else res.send(data);
     });
 };
-
-/*
-
-// Busca todos os filmes
-exports.findAll = (req, res) => {
-    Filmes.getAll((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Ocorreu algum erro durante a busca dos filmes!"
-            });
-        else res.send(data);
-    });
-};
-*/
 
 // Busca todos os filmes
 exports.findAll = (req, res) => {

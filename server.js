@@ -31,10 +31,6 @@ app.get("/", (req, res) => {
     return res.json({ message: "Teste..." });
 });
 
-/*db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});*/
-
 require("./routes/filmes.routes")(app);
 
 // set port, listen for requests

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Nov-2022 às 18:20
+-- Tempo de geração: 12-Nov-2022 às 22:21
 -- Versão do servidor: 10.4.20-MariaDB
 -- versão do PHP: 8.0.9
 
@@ -29,11 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `filmes` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(255) NOT NULL,
-  `titulo_original` varchar(255) NOT NULL,
-  `descricao` varchar(255) NOT NULL,
-  `data_de_lancamento` varchar(150) NOT NULL,
-  `pontuacao` varchar(150) NOT NULL
+  `titulo` varchar(255) DEFAULT NULL,
+  `titulo_original` varchar(255) DEFAULT NULL,
+  `descricao` varchar(255) DEFAULT NULL,
+  `data_de_lancamento` varchar(255) DEFAULT NULL,
+  `pontuacao` varchar(255) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
