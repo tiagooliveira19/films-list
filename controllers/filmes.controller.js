@@ -1,4 +1,23 @@
-const Filmes = require('../models/filmes');
+// const Filmes = require('../models/filmes');
+const db = require('../models');
+const Filmes = db.filmes;
+// const Op = db.Sequelize.Op;
+
+const getPagination = (page, size) => {
+    const limit = size ? +size : 10;
+    const offset = page ? page * limit : 0;
+
+    return { limit, offset };
+};
+
+const getPagingData = (data, page, limit) => {
+    const { count: totalItems, rows: filmes } = data;
+    const currentPage = page ? +page : 0;
+    const totalPages = Math.ceil(totalItems / limit);
+
+    return { totalItems, filmes, totalPages, currentPage };
+};
+
 
 // Cria e Salva um novo filme
 exports.create = (req, res) => {
@@ -18,16 +37,10 @@ exports.create = (req, res) => {
         pontuacao: req.body.pontuacao
     });
 
-    /*const filme = new Filmes({
-        titulo: req.body.title,
-        titulo_original: req.body.original_title,
-        descricao: req.body.description,
-        data_de_lancamento: req.body.release_date,
-        pontuacao: req.body.rt_score
-    });*/
+    // console.log(filme.dataValues);
 
     // Salva filme criado no banco
-    Filmes.create(filme, (err, data) => {
+    Filmes.create(filme.dataValues, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -36,6 +49,8 @@ exports.create = (req, res) => {
         else res.send(data);
     });
 };
+
+/*
 
 // Busca todos os filmes
 exports.findAll = (req, res) => {
@@ -47,4 +62,24 @@ exports.findAll = (req, res) => {
             });
         else res.send(data);
     });
+};
+*/
+
+// Busca todos os filmes
+exports.findAll = (req, res) => {
+
+    const { page, size } = req.query;
+    const { limit, offset } = getPagination(page, size);
+
+    Filmes.findAndCountAll({ limit, offset })
+        .then(data => {
+            const response = getPagingData(data, page, limit);
+            res.send(response);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Ocorreu algum erro durante a busca dos filmes!"
+            });
+        });
 };

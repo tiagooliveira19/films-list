@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require('cors');
 
+const db = require('./models');
+db.sequelize.sync();
+
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
@@ -27,6 +30,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     return res.json({ message: "Teste..." });
 });
+
+/*db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+});*/
 
 require("./routes/filmes.routes")(app);
 

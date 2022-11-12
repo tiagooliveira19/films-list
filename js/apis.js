@@ -1,6 +1,8 @@
 $('#click-filmes').click(function () {
 
-    $.get('https://ghibliapi.herokuapp.com/films/?fields=title,original_title,description,release_date,rt_score', function (response) {
+    let limit = 5;
+
+    $.get('https://ghibliapi.herokuapp.com/films/?fields=title,original_title,description,release_date,rt_score&limit=' + limit, function (response) {
 
         $.each(response, function (index, json) {
 
@@ -23,7 +25,7 @@ function cadastraFilme (dados) {
     // console.log(dados)
 
     $.ajax({
-        url: 'http://localhost:3000/filme',
+        url: 'http://localhost:3000/api/filmes/add',
         dataType: 'json',
         type: 'post',
         data: dados,
