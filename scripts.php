@@ -5,6 +5,7 @@
         referrerpolicy="no-referrer"></script>
 <script src="js/toastr.js"></script>
 <script type="text/javascript" src="/js/menu.js"></script>
+<script type="text/javascript" src="/js/apis.js"></script>
 <script>
 
     $(document).ready(function () {
