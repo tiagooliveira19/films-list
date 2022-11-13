@@ -9,7 +9,23 @@
 <script>
 
     $(document).ready(function () {
-        buscaFilmes();
+        buscaFilmes(0);
         paginaFilme();
+
+        $('#proxima').click(function () {
+
+            let paginaAtual = $('#pagina-atual').val();
+            let page = parseInt(paginaAtual) + 1;
+
+            buscaFilmes(page);
+        });
+
+        $('#anterior').click(function () {
+
+            let paginaAtual = $('#pagina-atual').val();
+            let page = parseInt(paginaAtual) - 1;
+
+            buscaFilmes(page);
+        });
     });
 </script>

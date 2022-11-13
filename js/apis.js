@@ -43,24 +43,24 @@ function cadastraFilme (dados) {
     });
 }
 
-function buscaFilmes () {
+function buscaFilmes (page) {
 
-    $.get('http://localhost:3000/api/filmes', function (response) {
+    $.get('http://localhost:3000/api/filmes?page=' + page, function (response) {
 
         var table_body = 'table-body';
-        console.log(response);
-
 
         if (response['totalItems'] > 0) {
 
-            // $('#div-aviso').addClass('hidden');
+            limitaDownloadApiFilmes(response['totalItems'], 200);
+
             $('#total-itens').html(response['totalItems']);
+            $('#pagina-atual').val(response['currentPage']);
+
+            desabilitaBotao(response['currentPage'], response['totalPages']);
 
             $('#' + table_body).empty();
 
             $.each(response['filmes'], function (key, json) {
-
-                console.log(json);
 
                 $('#' + table_body)
                     .append(
@@ -77,6 +77,7 @@ function buscaFilmes () {
         } else {
             $('#table-body')
                 .html('<tr class="txt-center"><td colspan="7">Nenhum registro encontrado!</td></tr>');
+            $('#div-pagination').addClass('hidden');
         }
     });
 }
@@ -87,4 +88,24 @@ function paginaFilme () {
 
     $('.pagina-inicial').fadeOut('fast');
     $('.filmes, #conteudo-filmes').removeClass('hidden').fadeIn('slow');
+}
+
+function desabilitaBotao (currentPage, totalPages) {
+    if (currentPage === 0) {
+        $('#anterior').css({'pointer-events': 'none', 'color': '#CCCCCC'});
+    } else {
+        $('#anterior').css({'pointer-events': 'all', 'color': 'inherit'});
+    }
+
+    if (currentPage === (totalPages - 1)) {
+        $('#proxima').css({'pointer-events': 'none', 'color': '#CCCCCC'});
+    } else {
+        $('#proxima').css({'pointer-events': 'all', 'color': 'inherit'});
+    }
+}
+
+function limitaDownloadApiFilmes (totalItems, limitItems) {
+    if (totalItems >= limitItems) {
+        $('#div-aviso').addClass('hidden');
+    }
 }

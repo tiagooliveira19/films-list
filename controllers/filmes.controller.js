@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
     const { page, size } = req.query;
     const { limit, offset } = getPagination(page, size);
 
-    Filmes.findAndCountAll({ limit, offset })
+    Filmes.findAndCountAll({ order: [['data_de_lancamento', 'ASC']], limit, offset })
         .then(data => {
             const response = getPagingData(data, page, limit);
             res.send(response);
