@@ -33,7 +33,7 @@
 
         <input type="hidden" id="pagina-atual" value="">
 
-        <div class="col-md-10 mt-4 mb-4" id="div-pagination">
+        <div class="col-md-10 mt-4 mb-4 hidden" id="div-pagination">
             <div class="col-md-3"></div>
             <div class="col-md-4 txt-center margin-auto">
                 <span class="arrow-pagination" id="anterior">

@@ -55,6 +55,7 @@ function buscaFilmes (page) {
 
             $('#total-itens').html(response['totalItems']);
             $('#pagina-atual').val(response['currentPage']);
+            $('#div-pagination').removeClass('hidden').fadeIn('slow');
 
             desabilitaBotao(response['currentPage'], response['totalPages']);
 
