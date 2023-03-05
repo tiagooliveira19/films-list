@@ -28,7 +28,7 @@ exports.create = (req, res) => {
     // Cria um novo filme
     const filme = new Filmes({
         titulo: req.body.titulo,
-        titulo_original: req.body.titulo_original,
+        genero: req.body.genero,
         descricao: req.body.descricao,
         data_de_lancamento: req.body.data_de_lancamento,
         pontuacao: req.body.pontuacao
@@ -51,7 +51,8 @@ exports.findAll = (req, res) => {
     const { page, size } = req.query;
     const { limit, offset } = getPagination(page, size);
 
-    Filmes.findAndCountAll({ order: [['data_de_lancamento', 'ASC']], limit, offset })
+    // Filmes.findAndCountAll({ order: [['titulo', 'ASC']], limit, offset })
+    Filmes.findAndCountAll({ limit, offset })
         .then(data => {
             const response = getPagingData(data, page, limit);
             res.send(response);

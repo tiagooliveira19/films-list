@@ -139,6 +139,10 @@ code {
     margin-left: auto;
 }
 
+.ml-10 {
+    margin-left: 10px !important;
+}
+
 .ml-45 {
     margin-left: 50px !important;
 }
@@ -154,7 +158,6 @@ code {
 #click-filmes {
     cursor: pointer;
     font-style: italic;
-    font-weight: bold;
 }
 
 .div-filmes p {
