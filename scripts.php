@@ -9,6 +9,7 @@
 <script>
 
     $(document).ready(function () {
+
         buscaFilmes(0);
         paginaFilme();
 

@@ -4,7 +4,7 @@ module.exports = (sequelize, Sequelize) => {
         titulo: {
             type: Sequelize.STRING
         },
-        titulo_original: {
+        genero: {
             type: Sequelize.STRING
         },
         descricao: {

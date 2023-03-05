@@ -1,35 +1,51 @@
 $('#click-filmes').click(function () {
 
-    let limit = 5;
+    let search = $('#search-filmes').val();
 
-    $.get('https://ghibliapi.herokuapp.com/films/?fields=title,original_title,description,release_date,rt_score&limit=' + limit, function (response) {
+    $.get('http://www.omdbapi.com/?t=' + search + '&apikey=b4306a0c', function (response) {
 
-        $.each(response, function (index, json) {
+        if (response['Response'] === 'False') {
+
+            toastr.error(response['Error'], '', {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: true,
+                showDuration: "300",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            });
+
+            setTimeout(function () {
+                location.reload();
+            }, 5000);
+
+        } else {
 
             let dados = {
-                'titulo' : json['title'],
-                'titulo_original' : json['original_title'],
-                'descricao' : json['description'],
-                'data_de_lancamento' : json['release_date'],
-                'pontuacao' : json['rt_score']
+                'titulo' : response['Title'],
+                'genero' : response['Genre'],
+                'descricao' : response['Plot'],
+                'data_de_lancamento' : response['Released'],
+                'pontuacao' : response['imdbRating']
             }
 
             cadastraFilme(dados);
-        });
 
-        toastr.success('Filmes cadastrados com sucesso!', '', {
-            closeButton: true,
-            progressBar: true,
-            positionClass: "toast-top-right",
-            preventDuplicates: true,
-            showDuration: "300",
-            showMethod: "fadeIn",
-            hideMethod: "fadeOut"
-        });
+            toastr.success('Filmes cadastrados com sucesso!', '', {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: true,
+                showDuration: "300",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            });
 
-        setTimeout(function () {
-            location.reload();
-        }, 5000);
+            setTimeout(function () {
+                location.reload();
+            }, 5000);
+        }
     });
 });
 
@@ -68,7 +84,7 @@ function buscaFilmes (page) {
                         '<tr>'+
                             '<td>'+ json['id'] +'</td>' +
                             '<td>'+ json['titulo'] +'</td>' +
-                            '<td>'+ json['titulo_original'] +'</td>' +
+                            '<td>'+ json['genero'] +'</td>' +
                             '<td>'+ json['descricao'].substring(0, 50) + "..." +'</td>' +
                             '<td>'+ json['data_de_lancamento'] +'</td>' +
                             '<td>'+ json['pontuacao'] +'</td>' +

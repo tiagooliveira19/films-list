@@ -1,23 +1,29 @@
 <div id="conteudo-filmes">
 
     <div class="col-md-12 w-35 mt-3 cabecalho">
-        <label class="cabecalho-label">Filmes</label>
+        <label class="cabecalho-label">Filmes e Séries</label>
     </div>
 
-    <div class="ml-45 mt-5" id="div-aviso">
-        <span>Clique <span id="click-filmes">aqui</span> para baixar os filmes disponíveis!</span>
+    <div class="col-md-12 ml-45 mt-5 display-flex" id="div-aviso">
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="search-filmes" placeholder="Nome filme/série">
+        </div>
+
+        <div class="col-md-3 ml-10">
+            <button class="btn btn-primary" type="button" id="click-filmes">Pesquisar</button>
+        </div>
     </div>
 
     <div class="col-md-12 mt-4 div-filmes">
-        <p><span id="total-itens">0</span> filme(s) disponíveis em nossa base de dados:</p>
+        <p><span id="total-itens">0</span> registro(s) disponíveis em nossa base de dados:</p>
 
-        <div class="col-md-10 margin-auto mt-5">
+        <div class="col-md-11 margin-auto mt-5">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Título</th>
-                        <th>Título Original</th>
+                        <th>Genêro</th>
                         <th>Descrição</th>
                         <th>Data de Lançamento</th>
                         <th>Pontuação</th>
